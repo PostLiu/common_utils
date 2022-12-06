@@ -1,6 +1,20 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("maven-publish")
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                groupId = "com.postliu"
+                artifactId = "commonutils"
+                version = "1.0.0"
+                from(components["release"])
+            }
+        }
+    }
 }
 
 android {
@@ -40,7 +54,7 @@ dependencies {
     api("com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-base:2.1.0")
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("com.google.android.material:material:1.6.1")
+    implementation("com.google.android.material:material:1.7.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.4")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
