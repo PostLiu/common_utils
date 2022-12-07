@@ -38,6 +38,17 @@ sealed interface UIResult<out T> {
             }
         }
 
+        inline fun <T, R> UIResult<T>.mapCatching(action: (T) -> R): UIResult<R> {
+            return when (this) {
+                is Loading -> Loading
+                is Throw -> Throw(throwable)
+                is Failed -> Failed(message)
+                is Success -> kotlin.runCatching {
+                    Success(action(data))
+                }.getOrElse { Throw(it) }
+            }
+        }
+
         inline fun <T> UIResult<T>.success(action: (T) -> Unit) {
             if (this is Success) {
                 action(data)
