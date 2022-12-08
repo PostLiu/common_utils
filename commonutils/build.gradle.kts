@@ -28,11 +28,6 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
-        
-    packagingOptions {
-        jniLibs.excludes.add("com/postliu/commonutils/BuildConfig.class")
-    }
-
 
     buildTypes {
         release {

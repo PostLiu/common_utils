@@ -17,6 +17,10 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    packagingOptions {
+        jniLibs.excludes.add("com/postliu/commonutils/BuildConfig.class")
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
