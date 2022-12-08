@@ -6,7 +6,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.postliu.commonutils.view.base.StateInterface
-import kotlinx.coroutines.launch
 
 abstract class BaseActivity : AppCompatActivity(), StateInterface {
 
@@ -21,7 +20,7 @@ abstract class BaseActivity : AppCompatActivity(), StateInterface {
                     autoRefresh()
                 }
             }
-            launch {
+            launchWhenStarted {
                 onState()
             }
         }

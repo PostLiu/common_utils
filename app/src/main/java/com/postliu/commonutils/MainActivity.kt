@@ -16,15 +16,15 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>() {
         with(binding) {
             recyclerview.adapter = mainAdapter.also {
                 it.submitList(listOf("1", "2", "3", "4", "5"))
-                it.setOnItemClickListener { data, position ->
+                it.setOnItemClickListener { _, position ->
                     toast("整体点击事件：$position")
                     copyClip { "这是测试文本" }
                 }
-                it.setOnItemLongClickListener { data, position ->
+                it.setOnItemLongClickListener { _, position ->
                     toast("整体长按事件：$position")
                     return@setOnItemLongClickListener true
                 }
-                it.setOnItemChildEventListener { data, position ->
+                it.setOnItemChildEventListener { _, position ->
                     itemImage.setOnClickListener {
                         toast("图片点击：$position")
                     }

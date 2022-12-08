@@ -8,7 +8,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.postliu.commonutils.view.base.StateInterface
-import kotlinx.coroutines.launch
 
 abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId), StateInterface {
 
@@ -23,7 +22,7 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentL
                     autoRefresh()
                 }
             }
-            launch {
+            launchWhenStarted {
                 onState()
             }
         }
