@@ -10,7 +10,7 @@ afterEvaluate {
             create<MavenPublication>("release") {
                 groupId = "com.postliu"
                 artifactId = "commonutils"
-                version = "1.0.1"
+                version = "1.0.1.1"
                 from(components["release"])
             }
         }
