@@ -1,8 +1,9 @@
 package com.postliu.commonutils
 
+import com.postliu.commonutils.utils.TimeUtils
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
-
-import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -11,7 +12,18 @@ import org.junit.Assert.*
  */
 class ExampleUnitTest {
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun addition_isCorrect() = runBlocking {
+        val features = 1670552520000
+        val now = System.currentTimeMillis()
+        val result = features - now
+        repeat(result.toInt()) {
+            delay(1000)
+            if (it >= (result / 1000).toInt()) {
+                return@repeat
+            }
+            TimeUtils.formatDHMS(features - System.currentTimeMillis()).run {
+                println("$it--${(result/1000).toInt()}->剩余时间:$this")
+            }
+        }
     }
 }

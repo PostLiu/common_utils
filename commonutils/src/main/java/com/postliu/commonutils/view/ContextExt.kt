@@ -24,6 +24,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+import com.postliu.commonutils.utils.HandlerToastUtils
 import java.io.File
 
 /**
@@ -63,7 +64,7 @@ fun Context.getColor(@ColorRes color: Int, theme: Theme) = ResourcesCompat.getCo
  * @param msg
  */
 fun Context.toast(msg: Any?) = msg?.let {
-    Toast.makeText(this, "$it", Toast.LENGTH_SHORT).show()
+    HandlerToastUtils.show(this, it.toString(), Toast.LENGTH_SHORT)
 }
 
 /**
