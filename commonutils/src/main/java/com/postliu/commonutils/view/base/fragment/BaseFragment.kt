@@ -9,7 +9,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.postliu.commonutils.view.base.StateInterface
 
-abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId), StateInterface {
+abstract class BaseFragment : Fragment, StateInterface {
+
+    constructor() : super()
+
+    constructor(@LayoutRes contentLayoutId: Int) : super(contentLayoutId)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

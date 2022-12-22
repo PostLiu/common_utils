@@ -10,7 +10,7 @@ afterEvaluate {
             create<MavenPublication>("release") {
                 groupId = "com.postliu"
                 artifactId = "commonutils"
-                version = "1.0.1.2"
+                version = "1.0.1.3"
                 from(components["release"])
             }
         }
@@ -49,6 +49,8 @@ android {
 }
 
 dependencies {
+    api("io.coil-kt:coil:2.2.2")
+    api("com.google.code.gson:gson:2.10")
     api("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
     api("com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-ktx:2.1.0")
     api("com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-base:2.1.0")
