@@ -1,17 +1,34 @@
+import org.jetbrains.kotlin.konan.properties.Properties
+import java.io.FileInputStream
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("maven-publish")
 }
 
+val properties = Properties()
+properties.load(FileInputStream(rootProject.file("github.properties")))
+
 afterEvaluate {
     publishing {
         publications {
             create<MavenPublication>("release") {
                 groupId = "com.postliu"
-                artifactId = "commonutils"
+                artifactId = "common_utils"
                 version = "1.0.1.3"
                 from(components["release"])
+//                artifact("build/outputs/aar/commonutils-release.aar")
+            }
+        }
+        repositories {
+            maven {
+                name = "common_utils"
+                setUrl("https://maven.pkg.github.com/${properties["gpr.usr"]}/$name")
+                credentials {
+                    username = "${properties["gpr.usr"]}"
+                    password = "${properties["gpr.key"]}"
+                }
             }
         }
     }
@@ -55,9 +72,9 @@ dependencies {
     api("com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-ktx:2.1.0")
     api("com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-base:2.1.0")
     implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("com.google.android.material:material:1.7.0")
+    implementation("androidx.appcompat:appcompat:1.6.0")
+    implementation("com.google.android.material:material:1.8.0")
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.4")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }
