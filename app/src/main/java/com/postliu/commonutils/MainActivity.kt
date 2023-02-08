@@ -3,6 +3,9 @@ package com.postliu.commonutils
 import android.os.Bundle
 import androidx.lifecycle.LifecycleCoroutineScope
 import com.postliu.commonutils.databinding.ActivityMainBinding
+import com.postliu.commonutils.utils.MapNavigationUtils
+import com.postliu.commonutils.utils.MapOpenFailed
+import com.postliu.commonutils.utils.MapOpenSuccess
 import com.postliu.commonutils.view.base.activity.BaseViewBindingActivity
 import com.postliu.commonutils.view.copyClip
 import com.postliu.commonutils.view.toast
@@ -14,22 +17,62 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         with(binding) {
-            recyclerview.adapter = mainAdapter.also {
-                it.submitList(listOf("1", "2", "3", "4", "5"))
-                it.setOnItemClickListener { _, position ->
+            recyclerview.adapter = mainAdapter.also { adapter ->
+                adapter.submitList(listOf("1", "2", "3", "4", "5"))
+                adapter.setOnItemClickListener { _, position ->
                     toast("整体点击事件：$position")
                     copyClip { "这是测试文本" }
                 }
-                it.setOnItemLongClickListener { _, position ->
+                adapter.setOnItemLongClickListener { _, position ->
                     toast("整体长按事件：$position")
                     return@setOnItemLongClickListener true
                 }
-                it.setOnItemChildEventListener { _, position ->
+                adapter.setOnItemChildEventListener { _, position ->
                     itemImage.setOnClickListener {
                         toast("图片点击：$position")
                     }
                     itemButton.setOnClickListener {
-                        toast("按钮点击事件：$position")
+                        when (position) {
+                            0 -> {
+                                MapNavigationUtils.openBaiduMap(
+                                    this@MainActivity,
+                                    "22.988558",
+                                    "113.269325",
+                                    MapOpenFailed {
+                                        toast(it.message)
+                                    },
+                                    MapOpenSuccess {
+                                        toast("success")
+                                    })
+                            }
+
+                            1 -> {
+                                MapNavigationUtils.openGaodeMap(
+                                    this@MainActivity,
+                                    "22.988558",
+                                    "113.269325",
+                                    MapOpenFailed {
+                                        toast(it.message)
+                                    },
+                                    MapOpenSuccess {
+                                        toast("success")
+                                    })
+                            }
+
+                            2 -> {
+                                MapNavigationUtils.openTencentMap(
+                                    this@MainActivity,
+                                    "22.988558",
+                                    "113.269325",
+                                    MapOpenFailed {
+                                        toast(it.message)
+                                    },
+                                    MapOpenSuccess {
+                                        toast("success")
+                                    })
+                            }
+                        }
+
                     }
                 }
             }
