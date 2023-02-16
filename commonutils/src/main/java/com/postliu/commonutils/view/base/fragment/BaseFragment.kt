@@ -19,11 +19,11 @@ abstract class BaseFragment : Fragment, StateInterface {
         super.onViewCreated(view, savedInstanceState)
         with(viewLifecycleOwner.lifecycleScope) {
             launchWhenStarted {
-                onceRequest()
+                launchWhenStarted()
             }
             launchWhenStarted {
                 viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    autoRefresh()
+                    repeatOnLifecycleStarted()
                 }
             }
             launchWhenStarted {

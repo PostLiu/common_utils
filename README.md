@@ -29,13 +29,13 @@ repositories {
 ##### Groovy
 
 ```groovy
-implementation "com.github.PostLiu:common_utils:1.0.0"
+implementation "com.github.PostLiu:common_utils:1.0.1.5"
 ```
 
 ##### Kotlin
 
 ```kotlin
-implementation("com.github.PostLiu:common_utils:1.0.0")
+implementation("com.github.PostLiu:common_utils:1.0.1.5")
 ```
 
 ## Thanks

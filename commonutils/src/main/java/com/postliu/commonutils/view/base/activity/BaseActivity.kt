@@ -13,11 +13,11 @@ abstract class BaseActivity : AppCompatActivity(), StateInterface {
         super.onCreate(savedInstanceState)
         with(lifecycleScope) {
             launchWhenStarted {
-                onceRequest()
+                launchWhenStarted()
             }
             launchWhenStarted {
                 repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    autoRefresh()
+                    repeatOnLifecycleStarted()
                 }
             }
             launchWhenStarted {

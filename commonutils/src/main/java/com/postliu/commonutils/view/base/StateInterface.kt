@@ -4,9 +4,9 @@ import androidx.lifecycle.LifecycleCoroutineScope
 
 interface StateInterface {
 
-    suspend fun onceRequest()
+    suspend fun launchWhenStarted()
 
-    suspend fun autoRefresh()
+    suspend fun repeatOnLifecycleStarted()
 
     fun LifecycleCoroutineScope.onState()
 }

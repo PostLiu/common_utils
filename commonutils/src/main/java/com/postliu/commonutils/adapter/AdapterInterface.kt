@@ -3,6 +3,7 @@ package com.postliu.commonutils.adapter
 import android.content.Context
 import android.content.res.Resources.Theme
 import androidx.annotation.ColorRes
+import androidx.annotation.DimenRes
 import androidx.annotation.StringRes
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -29,5 +30,7 @@ interface AdapterInterface<T> {
     fun getString(@StringRes string: Int) = context.getString(string)
 
     fun getString(@StringRes string: Int, vararg formatArgs: Any) = context.getString(string, formatArgs)
+
+    fun getDimen(@DimenRes dimen: Int) = context.resources.getDimension(dimen)
 
 }

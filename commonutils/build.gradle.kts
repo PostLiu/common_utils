@@ -16,9 +16,8 @@ afterEvaluate {
             create<MavenPublication>("release") {
                 groupId = "com.postliu"
                 artifactId = "common_utils"
-                version = "1.0.1.4"
+                version = "1.0.1.5"
                 from(components["release"])
-//                artifact("build/outputs/aar/commonutils-release.aar")
             }
         }
         repositories {
