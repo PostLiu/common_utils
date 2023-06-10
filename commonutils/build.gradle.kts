@@ -20,16 +20,6 @@ afterEvaluate {
                 from(components["release"])
             }
         }
-        repositories {
-            maven {
-                name = "common_utils"
-                setUrl("https://maven.pkg.github.com/${properties["gpr.usr"]}/$name")
-                credentials {
-                    username = "${properties["gpr.usr"]}"
-                    password = "${properties["gpr.key"]}"
-                }
-            }
-        }
     }
 }
 
@@ -71,7 +61,7 @@ dependencies {
     api("com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-ktx:2.1.0")
     api("com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-base:2.1.0")
     implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.8.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

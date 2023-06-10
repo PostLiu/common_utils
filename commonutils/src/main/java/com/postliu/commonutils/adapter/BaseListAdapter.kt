@@ -8,7 +8,7 @@ import androidx.viewbinding.ViewBinding
 import com.dylanc.viewbinding.BindingViewHolder
 
 abstract class BaseListAdapter<T : Any, VH : RecyclerView.ViewHolder>(diffCallback: DiffUtil.ItemCallback<T>) :
-    ListAdapter<T, VH>(diffCallback), AdapterInterface<T> {
+    ListAdapter<T, VH>(diffCallback), IAdapter<T> {
 
     private var recyclerViewOrNull: RecyclerView? = null
 
@@ -58,7 +58,7 @@ abstract class BaseListAdapter<T : Any, VH : RecyclerView.ViewHolder>(diffCallba
 }
 
 abstract class BaseBindingAdapter<T : Any, VB : ViewBinding>(diffCallback: DiffUtil.ItemCallback<T>) :
-    ListAdapter<T, BindingViewHolder<VB>>(diffCallback), ViewBindingAdapterInterface<T, VB> {
+    ListAdapter<T, BindingViewHolder<VB>>(diffCallback), ViewBindingIAdapter<T, VB> {
 
     private var recyclerViewOrNull: RecyclerView? = null
 

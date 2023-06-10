@@ -19,22 +19,22 @@ import coil.ImageLoader
 import coil.request.ImageRequest
 import kotlinx.coroutines.launch
 
-fun ImageView.loadBlurImageCompat(url: String, radius: Float = 10f) {
-    findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            val renderEffect = RenderEffect.createBlurEffect(radius, radius, Shader.TileMode.CLAMP)
-            setRenderEffect(renderEffect)
-            setImageBitmap(BlurImageUtils.getBitmapFromCoil(context, url))
-        } else {
-            val newBitmap =
-                BlurImageUtils.getBitmapFromCoil(context, url)
-                    ?.let { BlurImageUtils.blurImage(context, it) }
-            setImageBitmap(newBitmap)
+object BlurImageUtils {
+
+    fun ImageView.loadBlurImageCompat(url: String, radius: Float = 10f) {
+        findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                val renderEffect = RenderEffect.createBlurEffect(radius, radius, Shader.TileMode.CLAMP)
+                setRenderEffect(renderEffect)
+                setImageBitmap(getBitmapFromCoil(context, url))
+            } else {
+                val newBitmap =
+                    getBitmapFromCoil(context, url)
+                        ?.let { blurImage(context, it) }
+                setImageBitmap(newBitmap)
+            }
         }
     }
-}
-
-object BlurImageUtils {
 
     suspend fun getBitmapFromCoil(context: Context, url: Any): Bitmap? {
         val result = kotlin.runCatching {

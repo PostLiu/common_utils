@@ -9,12 +9,12 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 
-interface ViewBindingAdapterInterface<T, VB : ViewBinding> : AdapterInterface<T> {
+interface ViewBindingIAdapter<T, VB : ViewBinding> : IAdapter<T> {
 
     fun setOnItemChildEventListener(onItemChildWithViewBindingEventListener: OnItemChildWithViewBindingEventListener<T, VB>)
 }
 
-interface AdapterInterface<T> {
+interface IAdapter<T> {
     fun setOnItemClickListener(onItemClickListener: OnItemClickListener<T>)
 
     fun setOnItemLongClickListener(onItemLongClickListener: OnItemLongClickListener<T>)

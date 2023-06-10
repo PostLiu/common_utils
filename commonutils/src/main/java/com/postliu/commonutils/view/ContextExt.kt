@@ -194,33 +194,3 @@ fun Context.installApk(
         }
     }.getOrThrow()
 }
-
-/**
- * 应用内跳转[Intent]
- *
- * @param R
- * @param context
- * @param block
- */
-inline fun <reified R> startWithIntent(
-    context: Context, noinline block: (Intent.() -> Unit)? = null
-) = runCatching {
-    val intent = Intent(context, R::class.java)
-    block?.invoke(intent)
-    context.startActivity(intent)
-}
-
-/**
- * 通过action跳转[Intent]
- *
- * @param context
- * @param action
- * @param block
- */
-fun startWithAction(
-    context: Context, action: String, block: (Intent.() -> Unit)? = null
-) = runCatching {
-    val intent = Intent(action)
-    block?.invoke(intent)
-    context.startActivity(intent)
-}

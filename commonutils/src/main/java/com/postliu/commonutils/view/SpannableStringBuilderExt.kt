@@ -2,7 +2,6 @@ package com.postliu.commonutils.view
 
 import android.content.Context
 import android.graphics.*
-import android.text.NoCopySpan
 import android.text.SpannableStringBuilder
 import android.text.style.*
 import android.view.View
@@ -12,13 +11,6 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.TypefaceCompat
 import androidx.core.text.inSpans
 import kotlin.math.roundToInt
-
-/**
- * 重写[ClickableSpan],[NoCopySpan]处理[SpannableStringBuilder]的click事件内存泄漏问题
- *
- * @constructor Create empty No copy click span
- */
-abstract class NoCopyClickSpan : ClickableSpan(), NoCopySpan
 
 typealias BuilderAction = SpannableStringBuilder.() -> Unit
 
@@ -57,7 +49,7 @@ inline fun SpannableStringBuilder.image(
  */
 inline fun SpannableStringBuilder.click(
     crossinline click: (View) -> Unit, builderAction: BuilderAction
-) = inSpans(object : NoCopyClickSpan() {
+) = inSpans(object : ClickableSpan() {
     override fun onClick(widget: View) {
         click.invoke(widget)
     }
